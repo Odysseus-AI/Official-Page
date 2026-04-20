@@ -16,8 +16,36 @@ document.addEventListener("DOMContentLoaded", () => {
       s.appendChild(el);
     }
   }
+  // ── Hamburger Menu ──────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  const overlay   = document.getElementById('nav-overlay');
 
-  // ── Typewriter ──────────────────────────────────────────────
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('mobile-open');
+    overlay.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    hamburger.classList.toggle('open');
+    overlay.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close on overlay click
+  overlay.addEventListener('click', closeMenu);
+
+  // Close when a nav link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // ── Typewriter ──────────────────────────────────────────
   const phrases = [
     "I have a Google interview in 3 weeks...",
     "I want to get into YC next cohort...",

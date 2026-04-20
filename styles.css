@@ -96,9 +96,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
-  background: rgba(5, 6, 10, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #05060a;
   border-bottom: 1px solid var(--border-light);
   position: sticky;
   top: 0;
@@ -170,6 +168,113 @@ nav {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
+
+/* ── Hamburger ───────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animated X state */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile nav drawer */
+.nav-links.mobile-open {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(300px, 80vw);
+  height: 100vh;
+  background: rgba(5, 6, 10, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border-light);
+  padding: 6rem 2.5rem 3rem;
+  gap: 0;
+  z-index: 150;
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+
+.nav-links.mobile-open .nav-link {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-muted);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-light);
+  transition: color 0.2s ease;
+}
+
+.nav-links.mobile-open .nav-link:last-child {
+  border-bottom: none;
+}
+
+.nav-links.mobile-open .nav-link:hover {
+  color: var(--text-main);
+}
+
+.nav-mobile-cta {
+  display: none;
+}
+
+.nav-links.mobile-open .nav-mobile-cta {
+  display: block !important;
+  margin-top: 1.5rem;
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em;
+  border-bottom: none !important;
+}
+
+/* Overlay behind drawer */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 140;
+  backdrop-filter: blur(2px);
+}
+
+.nav-overlay.active {
+  display: block;
+}
+
 
 .hero {
   text-align: center;
@@ -1056,50 +1161,266 @@ footer {
   color: var(--accent);
 }
 
-@media(max-width:800px) {
+/* ── Tablet (≤ 900px) ─────────────────────────────────── */
+@media (max-width: 900px) {
+  nav {
+    padding: 1.25rem 2rem;
+  }
+
+  section {
+    padding: 5rem 1.5rem;
+    max-width: 100%;
+  }
+
+  .hero {
+    padding: 5rem 1.5rem 3rem;
+  }
+
+  .hero-title {
+    font-size: 62px;
+  }
+
   .price-grid {
     grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
   }
+
   .price-card.featured {
     transform: none;
+    border: 1px solid var(--accent);
   }
+
   .price-card.featured:hover {
     transform: translateY(-5px);
   }
+
   .use-case {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.75rem;
+    padding: 1.5rem;
   }
+
+  .use-case:hover {
+    padding-left: 1.5rem;
+  }
+
   .use-case-tag {
     align-self: flex-start;
   }
+
   .step {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  .step-tag {
+    align-self: flex-start;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .contact-item {
+    padding: 1rem 0.5rem;
+  }
+
+  footer {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .footer-contact {
+    align-items: flex-start;
+  }
+
+  .quote-text {
+    font-size: 28px;
+  }
+
+  .final-title {
+    font-size: 52px;
   }
 }
 
-@media(max-width:600px) {
+/* ── Mobile (≤ 600px) ─────────────────────────────────── */
+@media (max-width: 600px) {
   nav {
-    padding: 1.5rem 2rem;
+    padding: 1rem 1.25rem;
   }
-  .hero-title {
-    font-size: 52px;
-  }
-  .sec-title {
-    font-size: 36px;
-  }
+
   .nav-links {
     display: none;
   }
-  .signup-wrap {
-    padding: 2rem;
+
+  .nav-cta {
+    display: none;
   }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  section {
+    padding: 4rem 1.25rem;
+  }
+
+  .hero {
+    padding: 4rem 1.25rem 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-title {
+    font-size: 46px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+  }
+
+  .hero-cta {
+    font-size: 13px;
+    padding: 13px 28px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .typing-demo {
+    margin: 1.5rem auto 2rem;
+  }
+
+  .typing-text {
+    font-size: 14px;
+  }
+
+  .typing-body {
+    padding: 1.25rem 1rem;
+    min-height: 70px;
+  }
+
+  .sec-title {
+    font-size: 32px;
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .pain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pain-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .step {
+    padding: 1.75rem 0;
+  }
+
+  .step-tag {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+
+  .price-grid {
+    max-width: 100%;
+  }
+
+  .price-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 52px;
+  }
+
+  .quote-section {
+    padding: 5rem 1.25rem;
+  }
+
+  .quote-mark {
+    font-size: 72px;
+  }
+
   .quote-text {
-    font-size: 24px;
+    font-size: 22px;
   }
+
+  .final-cta {
+    padding: 5rem 1.25rem;
+  }
+
   .final-title {
-    font-size: 42px;
+    font-size: 40px;
+  }
+
+  .final-sub {
+    font-size: 15px;
+  }
+
+  .final-btn {
+    width: 100%;
+    text-align: center;
+    padding: 16px 24px;
+  }
+
+  .contact-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  footer {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+  }
+}
+
+/* ── Small Mobile (≤ 400px) ──────────────────────────── */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .sec-title {
+    font-size: 28px;
+  }
+
+  .typing-text {
+    font-size: 13px;
+  }
+
+  .final-title {
+    font-size: 34px;
+  }
+
+  .price-amount {
+    font-size: 44px;
+  }
+
+  .nav-cta {
+    display: none;
   }
 }
