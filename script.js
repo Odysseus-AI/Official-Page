@@ -15,16 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursorEl = document.getElementById('typing-cursor');
   if (textEl && cursorEl) {
     const phrases = [
-      "I have a Google interview in 3 weeks...",
-      "Help me find time to study in my packed schedule...",
-      "I want to start a study group for finals...",
-      "I'm applying to med school — where do I even start?",
-      "Find me the best resources for machine learning...",
-      "Check in with me every day on my MCAT prep...",
-      "I want to land at Goldman after graduation...",
-      "I need a roadmap from freshman year to YC...",
-      "Help me balance my internship apps and coursework...",
-      "I want to build my portfolio this semester...",
+      "How's my mentee doing on the MCAT prep this week — still on track?",
+      "Where are we on the launch plan and who's actually blocked — in Slack, not a deck?",
+      "I don't need another to-do app — I need to know if I'm on pace for June...",
+      "We ship the MVP in 8 weeks and I'm the only dev with a day job...",
+      "MCAT in 11 weeks — I need a schedule that survives orgo lab...",
+      "Job search in a new city with zero network — I need a sequence, not tips...",
+      "I'm drowning in secondaries — what do I even write this week?",
+      "Board exam next year, night shifts now — the arc won't fit a habit tracker...",
+      "LSAT in August, full course load, zero structure...",
+      "First startup + full course load — one calendar, two different urgencies...",
+      "PhD applications — when do I email PIs vs write the SOP?",
+      "I need a portfolio + Leetcode + applications — the math doesn't work...",
     ];
     let pi = 0, ci = 0, del = false, paused = false;
     function tick() {
@@ -52,6 +54,118 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.12, rootMargin: "0px 0px -50px 0px" });
     reveals.forEach(el => obs.observe(el));
   } else { reveals.forEach(el => el.classList.add('active')); }
+
+  // ── Channel demos carousel (Discord / WhatsApp / Slack) ─
+  (function initChannelDemos() {
+    const section = document.querySelector("[data-channel-demos]");
+    if (!section) return;
+    const track = section.querySelector("[data-carousel-track]");
+    const viewport = section.querySelector("[data-carousel-viewport]");
+    const root = section.querySelector("[data-carousel-root]");
+    const live = document.getElementById("carousel-live");
+    const tabList = section.querySelectorAll(".channel-carousel__tab");
+    const panelList = section.querySelectorAll('.channel-carousel__slide[role="tabpanel"]');
+    if (!track || !viewport || !tabList.length) return;
+
+    const SLIDE_COUNT = 3;
+    const LABELS = ["Discord", "WhatsApp", "Slack"];
+    let index = 0;
+    let autoTimer = null;
+    const AUTO_MS = 3000;
+    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let touchStartX = null;
+
+    function goTo(next) {
+      index = (next % SLIDE_COUNT + SLIDE_COUNT) % SLIDE_COUNT;
+      track.style.transform = "translateX(calc(-" + index + " * 100% / 3))";
+      tabList.forEach((t, j) => {
+        const on = j === index;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.setAttribute("tabindex", on ? "0" : "-1");
+      });
+      panelList.forEach(function (p, j) {
+        p.setAttribute("aria-hidden", j === index ? "false" : "true");
+        if ("inert" in p) p.inert = j !== index;
+      });
+      if (live) {
+        live.textContent =
+          "Showing " +
+          LABELS[index] +
+          " example, " +
+          (index + 1) +
+          " of " +
+          SLIDE_COUNT +
+          ".";
+      }
+    }
+
+    function startAuto() {
+      if (prefersReduce) return;
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        goTo(index + 1);
+      }, AUTO_MS);
+    }
+
+    function pauseAuto() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    tabList.forEach(function (t, j) {
+      t.addEventListener("click", function () {
+        goTo(j);
+        startAuto();
+      });
+    });
+
+    viewport.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.touches[0].clientX;
+      },
+      { passive: true }
+    );
+    viewport.addEventListener(
+      "touchend",
+      function (e) {
+        if (touchStartX == null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(dx) < 50) return;
+        if (dx > 0) goTo(index - 1);
+        else goTo(index + 1);
+        startAuto();
+      },
+      { passive: true }
+    );
+
+    section.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goTo(index - 1);
+        startAuto();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goTo(index + 1);
+        startAuto();
+      }
+    });
+
+    if (root) {
+      section.addEventListener("mouseenter", function () {
+        root.setAttribute("data-paused", "true");
+        pauseAuto();
+      });
+      section.addEventListener("mouseleave", function () {
+        root.removeAttribute("data-paused");
+        startAuto();
+      });
+    }
+
+    goTo(0);
+    startAuto();
+  })();
 
   // ── Hero Ocean Scene ───────────────────────────────────
   const canvas = document.getElementById('hero-canvas');
@@ -278,12 +392,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function drawShip(cx, cy) {
     const s = getShipScale();
     ctx.save();
+    // When the hull passes under the centered headline, soften the boat so masts don’t
+    // read through the gradient “cut-out” title (canvas shows through the transparent fill)
+    const softL = w * 0.26;
+    const softR = w * 0.74;
+    if (cx > softL && cx < softR) {
+      ctx.filter = 'blur(1.4px)';
+    } else {
+      ctx.filter = 'none';
+    }
     ctx.translate(cx, cy);
     ctx.scale(s, s);
 
     const dark  = '#243856', mid = '#1b2e46';
     const sails = isDay ? '#ece4d4' : '#cad4e8';
-    const flag  = '#c9873a';
+    const flag  = '#6fbf9a';
 
     ctx.fillStyle = dark;
     ctx.beginPath();
@@ -367,13 +490,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 7. Bottom edge fade
     const bf = ctx.createLinearGradient(0, h * 0.88, 0, h);
-    bf.addColorStop(0, 'rgba(248,246,243,0)'); bf.addColorStop(1, 'rgba(248,246,243,0.55)');
+    bf.addColorStop(0, 'rgba(244,251,247,0)'); bf.addColorStop(1, 'rgba(244,251,247,0.5)');
     ctx.fillStyle = bf; ctx.fillRect(0, h * 0.88, w, h * 0.12);
 
     raf = requestAnimationFrame(frame);
   }
 
-  window.addEventListener('resize', () => { cancelAnimationFrame(raf); setSize(); frame(); });
+  function nudgeCanvas() {
+    cancelAnimationFrame(raf);
+    setSize();
+    frame();
+  }
+  window.addEventListener('resize', nudgeCanvas);
+  window.addEventListener('orientationchange', function () { setTimeout(nudgeCanvas, 200); });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', nudgeCanvas);
+  }
   setSize();
   frame();
 });

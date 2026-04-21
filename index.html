@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Odysseus AI | Your Ambition, Mapped.</title>
-  <meta name="description" content="Odysseus AI is your personal career navigator — for interviews next week, big dreams next year, or the entire journey ahead.">
+  <title>Trov | A copilot for the long game</title>
+  <meta name="description" content="Trov is a copilot for the long game: exams, applications, career moves, and big projects. Mentors and PMs in Discord, WhatsApp, or Slack; Calendar, Jira, and Notion over MCP. BYOK: add your own model API key. Projects decomposed to daily and hourly steps.">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="logo.png" sizes="any">
 </head>
 <body>
   <div class="stars" id="stars"></div>
   <div class="content">
 
+    <div class="hero-viewport">
     <nav>
-      <a href="#" class="logo">ODYSSEUS<span>.</span>AI</a>
+      <a href="#" class="logo logo--inline" aria-label="Trov home">
+        <img src="trov-mascot.png" alt="" class="logo-mascot" width="40" height="40" loading="eager" decoding="async" />
+        <span class="logo-word">Trov</span>
+      </a>
       <div class="nav-links">
         <a href="#how-sec" class="nav-link">How it works</a>
+        <a href="#connect-sec" class="nav-link">Connect</a>
         <a href="#price-sec" class="nav-link">Pricing</a>
         <a href="#contact-sec" class="nav-link">Contact</a>
       </div>
@@ -29,6 +34,7 @@
     <div class="mob-menu" id="mob-menu">
       <button class="mob-close" id="mob-close" aria-label="Close menu">✕</button>
       <a href="#how-sec" class="mob-link">How it works</a>
+      <a href="#connect-sec" class="mob-link">Connect</a>
       <a href="#price-sec" class="mob-link">Pricing</a>
       <a href="#contact-sec" class="mob-link">Contact</a>
       <a href="https://forms.gle/SqBXgmS1zUqwXqD68" target="_blank" class="mob-link mob-cta">Join the Waitlist →</a>
@@ -38,9 +44,9 @@
     <div class="hero-wrapper">
     <canvas id="hero-canvas" class="hero-canvas"></canvas>
     <section class="hero" style="border-top:none;">
-      <div class="eyebrow fade-up">AI Career Navigator &nbsp;·&nbsp; For Any Student, Any Goal</div>
-      <h1 class="hero-title fade-up delay-1">Your <em>Ithaca</em><br>is waiting.</h1>
-      <p class="hero-sub fade-up delay-2">Daily check-ins, smart scheduling, and a personal AI that finds time in your busy life — so you can actually reach your goals.</p>
+      <div class="eyebrow fade-up">Exams, applications, launches &amp; career moves &nbsp;·&nbsp; When the finish line is months or years out</div>
+      <h1 class="hero-title fade-up delay-1">Your <em>long game</em>,<br>mapped end to end.</h1>
+      <p class="hero-sub fade-up delay-2">For what takes more than a sprint &mdash; exams, applications, launches, career moves. A copilot for the <em>whole</em> arc, not another task app.</p>
 
       <!-- Typing demo widget -->
       <div class="typing-demo fade-up delay-3" id="typing-demo">
@@ -48,7 +54,7 @@
           <span class="typing-dot"></span>
           <span class="typing-dot"></span>
           <span class="typing-dot"></span>
-          <span class="typing-label">Tell Odysseus your goal</span>
+          <span class="typing-label">Ask in your own words &mdash; your week, or your mentee&rsquo;s</span>
         </div>
         <div class="typing-body">
           <span class="typing-prefix">✦</span>
@@ -56,7 +62,7 @@
           <span class="typing-cursor" id="typing-cursor">|</span>
         </div>
         <div class="typing-footer">
-          <span class="typing-hint">Odysseus builds your plan instantly →</span>
+          <span class="typing-hint">Answers in the context of your real timeline — not a blank list →</span>
         </div>
       </div>
 
@@ -68,18 +74,296 @@
       </div>
     </section>
     </div><!-- /.hero-wrapper -->
+    </div><!-- /.hero-viewport -->
+
+    <section id="channel-demos-sec" class="reveal chat-mock-section channel-demos" data-channel-demos>
+      <div class="section-label">In the channel</div>
+      <h2 id="channel-demos-title" class="chat-mock-heading">Discord, WhatsApp, or Slack &mdash; <em>one</em> smooth swipe between three threads.</h2>
+      <p class="channel-demos-deck">A student reschedules in <strong>Discord</strong>, a mentor checks on a mentee in <strong>WhatsApp</strong>, a PM chases the real status in <strong>Slack</strong>.</p>
+
+      <div class="channel-carousel" data-carousel-root>
+        <div class="channel-carousel__tabs" role="tablist" aria-label="Channel example">
+          <button type="button" class="channel-carousel__tab" role="tab" id="tab-discord" aria-selected="true" aria-controls="panel-discord" data-carousel-tab="0">Discord</button>
+          <button type="button" class="channel-carousel__tab" role="tab" id="tab-whatsapp" aria-selected="false" aria-controls="panel-whatsapp" tabindex="-1" data-carousel-tab="1">WhatsApp</button>
+          <button type="button" class="channel-carousel__tab" role="tab" id="tab-slack" aria-selected="false" aria-controls="panel-slack" tabindex="-1" data-carousel-tab="2">Slack</button>
+        </div>
+        <div class="channel-carousel__live visually-hidden" role="status" aria-live="polite" id="carousel-live" aria-atomic="true"></div>
+        <div class="channel-carousel__viewport" data-carousel-viewport>
+          <div class="channel-carousel__track" data-carousel-track>
+            <div class="channel-carousel__slide" id="panel-discord" role="tabpanel" aria-labelledby="tab-discord" data-carousel-slide>
+              <p class="channel-slide-caption">Discord &mdash; a student <strong>reschedules</strong> a deep block with Trov</p>
+              <div class="chat-mock" id="chat-mock" role="log" aria-label="Example Discord: student rescheduling with Trov">
+                <div class="chat-mock-titlebar" aria-hidden="true">
+                  <span class="chat-mock-titlebar-dot"></span><span class="chat-mock-titlebar-dot"></span><span class="chat-mock-titlebar-dot"></span>
+                </div>
+                <header class="chat-mock-channel-head">
+                  <div class="chat-mock-channel-meta">
+                    <span class="chat-mock-hash" aria-hidden="true">#</span>
+                    <span class="chat-mock-channel-name">long-game</span>
+                  </div>
+                  <div class="chat-mock-channel-actions" aria-hidden="true">
+                    <span class="chat-mock-tool" title=""><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
+                    <span class="chat-mock-tool"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></span>
+                    <span class="chat-mock-tool"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></span>
+                  </div>
+                </header>
+                <div class="chat-mock-scroller">
+                  <div class="chat-mock-divider" role="separator"><span>Today</span></div>
+                  <div class="chat-mock-body">
+                    <div class="chat-mock-msg">
+                      <div class="chat-mock-avatar chat-mock-avatar--user" aria-hidden="true">Y</div>
+                      <div class="chat-mock-bubble">
+                        <div class="chat-mock-meta">
+                          <span class="chat-mock-name chat-mock-name--user">you</span>
+                          <time class="chat-mock-time" datetime="16:12">Today at 4:12 PM</time>
+                        </div>
+                        <p class="chat-mock-text">Urgent P0 at work just landed &mdash; I can&rsquo;t do the 2hr deep block I&rsquo;d set for tonight. I still have to protect my weekly target. <strong>Where can I put it?</strong></p>
+                      </div>
+                    </div>
+                    <div class="chat-mock-msg chat-mock-msg--trov">
+                      <div class="chat-mock-avatar chat-mock-avatar--trov" aria-hidden="true">T</div>
+                      <div class="chat-mock-bubble">
+                        <div class="chat-mock-meta">
+                          <span class="chat-mock-name chat-mock-name--trov">Trov</span>
+                          <span class="chat-mock-bot-badge" title="Verified bot">BOT</span>
+                          <time class="chat-mock-time" datetime="16:12">Today at 4:12 PM</time>
+                        </div>
+                        <p class="chat-mock-text">I checked <strong>Calendar</strong> + <strong>Jira</strong> over MCP. The only real openings this week: <strong>Thu 6:15&ndash;7:45am</strong> (pre-standup) or <strong>Fri 7:30&ndash;9:00pm</strong>. Want me to move the deep block to Thursday morning and slide review to Friday lunch?</p>
+                      </div>
+                    </div>
+                    <div class="chat-mock-msg">
+                      <div class="chat-mock-avatar chat-mock-avatar--user" aria-hidden="true">Y</div>
+                      <div class="chat-mock-bubble">
+                        <div class="chat-mock-meta">
+                          <span class="chat-mock-name chat-mock-name--user">you</span>
+                          <time class="chat-mock-time" datetime="16:13">Today at 4:13 PM</time>
+                        </div>
+                        <p class="chat-mock-text">Thursday morning. Please push the rest around it.</p>
+                      </div>
+                    </div>
+                    <div class="chat-mock-msg chat-mock-msg--trov">
+                      <div class="chat-mock-avatar chat-mock-avatar--trov" aria-hidden="true">T</div>
+                      <div class="chat-mock-bubble">
+                        <div class="chat-mock-meta">
+                          <span class="chat-mock-name chat-mock-name--trov">Trov</span>
+                          <span class="chat-mock-bot-badge" title="Verified bot">BOT</span>
+                          <time class="chat-mock-time" datetime="16:13">Today at 4:13 PM</time>
+                        </div>
+                        <p class="chat-mock-text">Done &mdash; deep block <strong>Thu 6:15am</strong>, review <strong>Fri 12:10pm</strong>. Left a line in the thread so your pod isn&rsquo;t waiting on you.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-mock-inputbar" aria-hidden="true">
+                  <div class="chat-mock-composer">
+                    <button type="button" class="chat-mock-input-btn" tabindex="-1" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    </button>
+                    <div class="chat-mock-input-fake">
+                      <span class="chat-mock-input-placeholder">Message <span class="chat-mock-input-hash">#</span>long-game</span>
+                    </div>
+                    <div class="chat-mock-input-suffix" aria-hidden="true">
+                      <span class="chat-mock-emoji" title="">😊</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-mock-footer">
+                  <span class="chat-mock-hint">Students move blocks in-channel; <strong>WhatsApp</strong> and <strong>Slack</strong> slides show mentor + PM</span>
+                </div>
+              </div>
+            </div>
+            <div class="channel-carousel__slide" id="panel-whatsapp" role="tabpanel" aria-labelledby="tab-whatsapp" data-carousel-slide>
+              <p class="channel-slide-caption">WhatsApp &mdash; a mentor <strong>asks about a mentee</strong> on pace</p>
+              <div class="wa-mock" role="log" aria-label="Example WhatsApp: mentee check-in with Trov">
+                <div class="wa-mock-top" aria-hidden="true">
+                  <div class="wa-mock-top-inner">
+                    <span class="wa-mock-chev">&lsaquo;</span>
+                    <div class="wa-mock-top-text">
+                      <span class="wa-mock-top-title">Trov</span>
+                      <span class="wa-mock-top-sub">Alex (mentor) in thread</span>
+                    </div>
+                  </div>
+                  <div class="wa-mock-top-icons" aria-hidden="true"><span>📹</span><span>☎</span></div>
+                </div>
+                <div class="wa-mock-scroller">
+                  <div class="wa-mock-pad">
+                    <div class="wa-day"><span>Today</span></div>
+                    <div class="wa-row wa-row--in">
+                      <div class="wa-avatar wa-avatar--alex" aria-hidden="true">A</div>
+                      <div class="wa-stack">
+                        <div class="wa-bubble wa-bubble--in">
+                          <p>How&rsquo;s <strong>Sam</strong> doing on the study plan this week &mdash; still on pace for <strong>June</strong>?</p>
+                          <time class="wa-bubble-time" datetime="16:00">4:00 PM</time>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wa-row wa-row--out">
+                      <div class="wa-stack wa-stack--out">
+                        <div class="wa-bubble wa-bubble--out">
+                          <p class="wa-bubble-label">Trov</p>
+                          <p>On pace. Two focus blocks left; review deck is <strong>~80%</strong> vs the June target. Say if you want a nudge to Sam.</p>
+                          <time class="wa-bubble-time" datetime="16:00">4:00 PM</time>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wa-row wa-row--in">
+                      <div class="wa-avatar wa-avatar--alex" aria-hidden="true">A</div>
+                      <div class="wa-stack">
+                        <div class="wa-bubble wa-bubble--in">
+                          <p>Yes &mdash; light nudge to finish the <strong>PS</strong> section by Sunday.</p>
+                          <time class="wa-bubble-time" datetime="16:01">4:01 PM</time>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wa-row wa-row--out">
+                      <div class="wa-stack wa-stack--out">
+                        <div class="wa-bubble wa-bubble--out">
+                          <p class="wa-bubble-label">Trov</p>
+                          <p>Noted. I&rsquo;ll add a <strong>Sun EOD</strong> reminder in Sam&rsquo;s plan + one line here when it&rsquo;s done.</p>
+                          <time class="wa-bubble-time" datetime="16:01">4:01 PM</time>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="wa-mock-composer" aria-hidden="true">
+                  <div class="wa-mock-mic" aria-hidden="true">+</div>
+                  <div class="wa-mock-fake">Message</div>
+                  <div class="wa-mock-emoji" aria-hidden="true">🙂</div>
+                </div>
+              </div>
+            </div>
+            <div class="channel-carousel__slide" id="panel-slack" role="tabpanel" aria-labelledby="tab-slack" data-carousel-slide>
+              <p class="channel-slide-caption">Slack &mdash; a <strong>PM</strong> and Trov on what the team <em>actually</em> did</p>
+              <div class="slack-mock" role="log" aria-label="Example Slack: PM and Trov">
+                <div class="slack-mock-ws" aria-hidden="true">
+                  <span class="slack-mock-ws-name">Trov + PM</span>
+                </div>
+                <header class="slack-mock-ch-top">
+                  <div class="slack-mock-ch-title">
+                    <span class="slack-mock-hash" aria-hidden="true">#</span>
+                    <span class="slack-mock-ch-name">eng-velocity</span>
+                  </div>
+                  <p class="slack-mock-ch-topic">API spec review &amp; focus blocks</p>
+                </header>
+                <div class="slack-mock-scroller">
+                  <div class="slack-mock-day">Wednesday, May 7</div>
+                  <div class="slack-mock-list">
+                    <div class="slack-mock-row">
+                      <div class="slack-mock-avatar slack-mock-avatar--pm" aria-hidden="true">RP</div>
+                      <div class="slack-mock-content">
+                        <div class="slack-mock-name-row">
+                          <span class="slack-mock-name">Riley Park</span>
+                          <span class="slack-mock-pill">PM</span>
+                          <time class="slack-mock-ts" datetime="14:01">1:01 PM</time>
+                        </div>
+                        <p class="slack-mock-txt">Did the team <strong>finish the API spec review</strong> this week? I&rsquo;m not seeing closure in Jira for <strong>Jordan</strong> or <strong>Sam</strong> &mdash; can you give me a straight read?</p>
+                      </div>
+                    </div>
+                    <div class="slack-mock-row slack-mock-row--trov">
+                      <div class="slack-mock-avatar slack-mock-avatar--trov" aria-hidden="true">T</div>
+                      <div class="slack-mock-content">
+                        <div class="slack-mock-name-row">
+                          <span class="slack-mock-name slack-mock-name--trov">Trov</span>
+                          <span class="slack-mock-app" title="App">APP</span>
+                          <time class="slack-mock-ts" datetime="14:01">1:01 PM</time>
+                        </div>
+                        <p class="slack-mock-txt">Pulled <strong>Jira</strong> + last standup. <strong>Jordan</strong> moved the epic to <em>Review</em> &mdash; no merged PR and no review comments yet. <strong>Sam&rsquo;s</strong> subtasks are still <em>To Do</em> with <strong>0h</strong> logged on the spec line this week. Want a side-by-side vs sprint goal?</p>
+                      </div>
+                    </div>
+                    <div class="slack-mock-row">
+                      <div class="slack-mock-avatar slack-mock-avatar--pm" aria-hidden="true">RP</div>
+                      <div class="slack-mock-content">
+                        <div class="slack-mock-name-row">
+                          <span class="slack-mock-name">Riley Park</span>
+                          <span class="slack-mock-pill">PM</span>
+                          <time class="slack-mock-ts" datetime="14:03">1:03 PM</time>
+                        </div>
+                        <p class="slack-mock-txt">I need it moving <strong>before standup tomorrow</strong>. <strong>Remind</strong> both of them (channel + DMs) and <strong>schedule real focus time</strong> for Sam &mdash; not 15&ndash;minute gaps. Jordan gets a nudge to merge or unstick the review today.</p>
+                      </div>
+                    </div>
+                    <div class="slack-mock-row slack-mock-row--trov">
+                      <div class="slack-mock-avatar slack-mock-avatar--trov" aria-hidden="true">T</div>
+                      <div class="slack-mock-content">
+                        <div class="slack-mock-name-row">
+                          <span class="slack-mock-name slack-mock-name--trov">Trov</span>
+                          <span class="slack-mock-app" title="App">APP</span>
+                          <time class="slack-mock-ts" datetime="14:04">1:04 PM</time>
+                        </div>
+                        <p class="slack-mock-txt">Done. <strong>Reminders:</strong> <span class="slack-mock-chan">#eng-velocity</span> ping <strong>6:00p today</strong> + <strong>DMs</strong> to Jordan &amp; Sam. <strong>Sam:</strong> holds <strong>Thu 1:00&ndash;1:45p</strong> and <strong>Fri 9:00&ndash;9:30a</strong> (Calendar + Slack &ldquo;focus&rdquo;). <strong>Jordan:</strong> DM in 1 hour with merge + review checklist. Say if you want a manager CC.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="slack-mock-compose" aria-hidden="true">
+                  <div class="slack-mock-input">
+                    <span class="slack-mock-placeholder">Message <span class="slack-mock-ch">#eng-velocity</span></span>
+                    <div class="slack-mock-compose-tools" aria-hidden="true">
+                      <span class="slack-mock-icon">+</span>
+                      <span class="slack-mock-icon">Aa</span>
+                      <span class="slack-mock-icon">@</span>
+                      <span class="slack-mock-icon slack-mock-icon--send">➤</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mentor-pm-sec" class="reveal mentor-pm-bridge" aria-labelledby="mentor-pm-title">
+      <div class="section-label">Mentors &amp; leads</div>
+      <h2 id="mentor-pm-title" class="mentor-pm-bridge-title">&ldquo;How&rsquo;s my mentee doing?&rdquo; &mdash; without another status deck.</h2>
+      <p class="mentor-pm-bridge-text">Mentors and PMs can <strong>ask in plain language</strong> in <strong>Discord, WhatsApp, or Slack</strong> &mdash; the same read on progress you see, not a one-off doc every week. The <a href="#channel-demos-sec">channel carousel</a> shows a student rescheduling in Discord, a mentee check-in in WhatsApp, and a PM thread in Slack. See also <a href="#connect-sec">Connect</a>.</p>
+    </section>
 
     <section class="reveal">
-      <div class="section-label">Why Students Struggle</div>
-      <h2 class="sec-title pain-title">You have ambition.<br>You need a system.</h2>
+      <div class="section-label">Not a productivity app</div>
+      <h2 class="sec-title pain-title">Other tools optimize your <em>day</em>.<br>You're trying to keep a <em>decade</em> in view.</h2>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Habit and task apps</div>
+            <p class="pain-text">Streaks, points, and &ldquo;get things done&rdquo; for whatever you type in. They don't know your test window, your job-search season, or why this launch week is different from last. Trov is rooted in <em>your</em> timeline and real gates, not a generic list.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Calendars and blockers</div>
+            <p class="pain-text">They protect time. They don't tell you the <em>order</em> of work inside those blocks across two years, or which requirement moves when you slip a deadline. Trov links your clock to a sequence, not an empty block.</p>
+          </div>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v16H4zM13 4h7v4M13 12h7M13 20h7"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Notes, docs, and &ldquo;workspaces&rdquo;</div>
+            <p class="pain-text">A beautiful place to write is still a blank page. Trov is not where you store ideas — it is the voice that asks, each week, whether you're on pace for the gate that actually decides your life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-label">Why the long game is brutal</div>
+      <h2 class="sec-title pain-title">You know where you're headed.<br>You don't have a map.</h2>
       <div class="pain-grid">
         <div class="pain-card">
           <div class="pain-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
           </div>
           <div class="pain-card-body">
-            <div class="pain-heading">Big goals, no roadmap</div>
-            <p class="pain-text">You know where you want to go — med school, Google, your own startup — but no one has mapped the path from here to there.</p>
+            <div class="pain-heading">A thousand unwritten rules</div>
+            <p class="pain-text">The promotion, the license, the program, the shipped product — the finish line is clear. The order of what to do first, what to cut, and what to ignore is not. You're piecing the path together from friends, forums, and fear.</p>
           </div>
         </div>
         <div class="pain-card">
@@ -87,8 +371,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
           </div>
           <div class="pain-card-body">
-            <div class="pain-heading">Time slips away</div>
-            <p class="pain-text">Classes, clubs, work, life — your calendar is packed. Critical deadlines sneak up and you have no system to stay ahead.</p>
+            <div class="pain-heading">Time isn't the problem. Structure is.</div>
+            <p class="pain-text">Day job, side project, family, the exam, the app you're rewriting — every week competes. Real deadlines and seasons don't wait while you &ldquo;figure it out later.&rdquo;</p>
           </div>
         </div>
         <div class="pain-card">
@@ -96,8 +380,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="12 4 14.5 12 12 20 9.5 12" fill="currentColor" stroke="none" opacity="0.7"/></svg>
           </div>
           <div class="pain-card-body">
-            <div class="pain-heading">No one guiding you</div>
-            <p class="pain-text">Professors are busy. Career centers are overwhelmed. You're navigating one of the most important journeys of your life — alone.</p>
+            <div class="pain-heading">Fifteen minutes, once a quarter</div>
+            <p class="pain-text">Advisors, managers, and mentors are swamped. The stakes are years of your life — and the personal guidance doesn't scale to everyone who needs it.</p>
           </div>
         </div>
         <div class="pain-card">
@@ -105,66 +389,76 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/><line x1="11" y1="4" x2="11" y2="20"/></svg>
           </div>
           <div class="pain-card-body">
-            <div class="pain-heading">Can't find the right resources</div>
-            <p class="pain-text">The internet has everything — which makes it useless. You don't need more content. You need the right resource, right now, for your goal.</p>
+            <div class="pain-heading">The prep deluge</div>
+            <p class="pain-text">Ten prep companies, a hundred Anki decks, and hot takes for every test date. You don't need more noise — you need the right work, for your exam and your exact timeline.</p>
           </div>
         </div>
       </div>
     </section>
 
     <section id="how-sec" class="reveal">
-      <h2 class="sec-title">How your Odyssey works.</h2>
+      <h2 class="sec-title">How your arc comes together.</h2>
       <div>
         <div class="step">
           <div class="step-num">I</div>
           <div class="step-content">
-            <div class="step-title">Tell us your destination</div>
-            <p class="step-desc">An interview in 3 weeks. A startup dream. A medical school application. Landing at Google. Whatever it is — name it, and Odysseus begins charting your course.</p>
+            <div class="step-title">Name the deadline, season, or project</div>
+            <p class="step-desc">Board exam in six months, job search in a new city, med school app cycle, or &ldquo;ship the v1 this fall.&rdquo; You give Trov the constraints — the date, the requirements, the dream — and it starts from your reality, not a template.</p>
           </div>
-          <div class="step-tag">Any Goal</div>
+          <div class="step-tag">Your track</div>
         </div>
         <div class="step">
           <div class="step-num">II</div>
           <div class="step-content">
             <div class="step-title">Get your personal roadmap</div>
-            <p class="step-desc">Odysseus builds a precise plan — with milestones, timelines, and weekly actions — tailored exactly to where you are and where you're going.</p>
+            <p class="step-desc">Trov turns huge, scary work into <em>projects</em> you can track — then breaks each into <em>weekly</em>, <em>daily</em>, and when it matters <em>hourly</em> steps. Not a vague goal on a sticky note; a sequence you can run before the real deadline.</p>
           </div>
           <div class="step-tag">Roadmap</div>
         </div>
         <div class="step">
           <div class="step-num">III</div>
           <div class="step-content">
-            <div class="step-title">Execute, adapt, and arrive</div>
-            <p class="step-desc">Tasks pushed to your calendar. Weekly check-ins to keep you on course. And when plans change — Odysseus recalibrates with you.</p>
+            <div class="step-title">Show up, adjust, and stay on-pace for the real gates</div>
+            <p class="step-desc">Those projects and sub-tasks land on your calendar at the right grain — sometimes a day, sometimes the next two hours. Check-ins track readiness for the <em>next</em> gate. When your life or results shift, Trov recalibrates the breakdown with you.</p>
           </div>
-          <div class="step-tag">Execution</div>
+          <div class="step-tag">Stay on track</div>
         </div>
       </div>
     </section>
 
     <section class="reveal">
-      <div class="section-label">What Odysseus Does For You</div>
-      <h2 class="sec-title">Your AI, always in your corner.</h2>
+      <div class="section-label">What Trov does for you</div>
+      <h2 class="sec-title">A copilot for the long haul: degree, offer, license, or shipped work.</h2>
       <div class="use-case-list">
         <div class="use-case">
           <div class="use-case-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12 11 14.5 15.5 9.5"/></svg>
           </div>
           <div class="use-case-content">
-            <div class="use-case-title">Daily &amp; Hourly Check-Ins</div>
-            <p class="use-case-desc">Odysseus checks in with you every day — sometimes every hour when crunch time hits. No more losing track of what matters.</p>
+            <div class="use-case-title">Rhythm for crunch season</div>
+            <p class="use-case-desc">Trov checks in when the stakes are real — not to preserve a streak, but to close the gap before the hard date: exam, release, offer, or interview.</p>
           </div>
-          <div class="use-case-tag">Always On</div>
+          <div class="use-case-tag">Stakes-aware</div>
         </div>
         <div class="use-case">
           <div class="use-case-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
           </div>
           <div class="use-case-content">
-            <div class="use-case-title">Finds Time in Your Busy Schedule</div>
-            <p class="use-case-desc">Syncs with your calendar and carves out focused work windows. No more "I didn't have time" — Odysseus makes the time for you.</p>
+            <div class="use-case-title">Time that defends the outcome</div>
+            <p class="use-case-desc">Syncs with your real calendar and blocks work that serves the <em>sequence</em> — not a hundred shallow tasks, the few blocks that move scores, deliverables, and applications.</p>
           </div>
-          <div class="use-case-tag">Smart Scheduling</div>
+          <div class="use-case-tag">Sequence, not busyness</div>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/><path d="M2 18l10 5 10-5"/></svg>
+          </div>
+          <div class="use-case-content">
+            <div class="use-case-title">Big work, split into projects and hours</div>
+            <p class="use-case-desc">One giant task &mdash; &ldquo;ship v1,&rdquo; &ldquo;passes 1&ndash;3,&rdquo; or &ldquo;finish secondaries&rdquo; &mdash; becomes projects, then concrete <em>daily</em> and <em>hourly</em> actions, so you always know what &ldquo;right now&rdquo; should look like.</p>
+          </div>
+          <div class="use-case-tag">Decompose</div>
         </div>
         <div class="use-case">
           <div class="use-case-icon">
@@ -172,9 +466,19 @@
           </div>
           <div class="use-case-content">
             <div class="use-case-title">Group Study &amp; Accountability</div>
-            <p class="use-case-desc">Coordinate study sessions, split goals with friends, and hold each other accountable — with Odysseus keeping the whole group on track.</p>
+            <p class="use-case-desc">Study pod, interview-prep group, or project team in the same crunch window &mdash; split work, share accountability &mdash; Trov keeps the group on the same page.</p>
           </div>
           <div class="use-case-tag">Collaboration</div>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="5" y="12" width="3" height="6" rx="0.5"/><rect x="10.5" y="8" width="3" height="10" rx="0.5"/><rect x="16" y="5" width="3" height="13" rx="0.5"/></svg>
+          </div>
+          <div class="use-case-content">
+            <div class="use-case-title">Mentors &amp; PMs see the same arc</div>
+            <p class="use-case-desc">Mentors and leads can ask <em>&ldquo;How&rsquo;s my mentee doing?&rdquo;</em> or <em>&ldquo;Where are we on the plan?&rdquo;</em> in WhatsApp, Discord, or Slack &mdash; Trov answers with milestones, blockers, and on-pace, using the same connected calendar and work as you, not a re-brief every one-on-one.</p>
+          </div>
+          <div class="use-case-tag">Shared line of sight</div>
         </div>
         <div class="use-case">
           <div class="use-case-icon">
@@ -182,7 +486,7 @@
           </div>
           <div class="use-case-content">
             <div class="use-case-title">Finds the Right Resources</div>
-            <p class="use-case-desc">Curates the exact articles, practice problems, courses, and connections you need — filtered for your goal, timeline, and level.</p>
+            <p class="use-case-desc">Surfaces the right practice, briefs, and intel for <em>your</em> goal and timeline &mdash; school list, company stack, or exam section &mdash; not every thread on the internet.</p>
           </div>
           <div class="use-case-tag">Curated Intel</div>
         </div>
@@ -191,10 +495,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <div class="use-case-content">
-            <div class="use-case-title">Sprint Mode for Deadlines</div>
-            <p class="use-case-desc">Interview in 2 weeks? Application due next month? Odysseus shifts into sprint mode and focuses every hour until you're ready.</p>
+            <div class="use-case-title">Lock-in before the gate</div>
+            <p class="use-case-desc">Launch in two weeks? Exam block next month? Panel interview this weekend? Nothing cute — only the work that still changes the outcome before the date is fixed.</p>
           </div>
-          <div class="use-case-tag">Deadline Driven</div>
+          <div class="use-case-tag">Gates, not due dates</div>
         </div>
         <div class="use-case">
           <div class="use-case-icon">
@@ -202,81 +506,248 @@
           </div>
           <div class="use-case-content">
             <div class="use-case-title">Holds the Long View</div>
-            <p class="use-case-desc">From orientation day to offer letter, Odysseus tracks the four-year arc of your journey so you never lose sight of where you're going.</p>
+            <p class="use-case-desc">From first step through test day, application season, or public launch, Trov holds the full arc so one bad week doesn't erase the plan.</p>
           </div>
-          <div class="use-case-tag">4-Year Plan</div>
+          <div class="use-case-tag">Full arc</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect-sec" class="reveal">
+      <div class="section-label">Where Trov shows up</div>
+      <h2 class="sec-title pain-title">The channel you use. The systems that hold your <em>real</em> schedule and work.</h2>
+      <div class="pain-grid connect-grid">
+        <div class="pain-card connect-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Chat on Discord, Slack, or WhatsApp</div>
+            <p class="pain-text">Mentors and PMs <strong>ask in plain language</strong> &mdash; e.g. <em>How&rsquo;s my mentee doing on the exam prep?</em> &mdash; in the same <strong>Discord, Slack, or WhatsApp</strong> thread, no new tab. In-channel is on <strong>Navigator+</strong> (free is in-app) so we can cover <strong>API and webhook</strong> cost. Your arc stays in the loop, and they get real answers, not a separate status inbox.</p>
+            <div class="connect-pills" aria-label="Chat channels">
+              <span class="connect-pill">Discord</span>
+              <span class="connect-pill">Slack</span>
+              <span class="connect-pill">WhatsApp</span>
+            </div>
+          </div>
+        </div>
+        <div class="pain-card connect-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">MCP to Calendar, Jira, and Notion</div>
+            <p class="pain-text">Model Context Protocol connectors pull your ground truth: exams on the calendar, research or lab work in Jira, notes and checklists in Notion &mdash; so Trov plans against reality, not a stale export.</p>
+            <div class="connect-pills" aria-label="MCP integrations">
+              <span class="connect-pill">Calendar</span>
+              <span class="connect-pill">Jira</span>
+              <span class="connect-pill">Notion</span>
+            </div>
+          </div>
+        </div>
+        <div class="pain-card connect-card">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 0 1 17 3"/></svg>
+          </div>
+          <div class="pain-card-body">
+            <div class="pain-heading">Bring your own model API</div>
+            <p class="pain-text">Add <strong>your</strong> provider key (e.g. OpenAI, Anthropic, or the vendors we support) so inference bills to <strong>your</strong> account&mdash;Trov still handles planning, tools, and channels. Optional on every tier if you need budget control or an enterprise contract.</p>
+            <div class="connect-pills" aria-label="BYOK model providers (examples)">
+              <span class="connect-pill">BYOK</span>
+              <span class="connect-pill">OpenAI&ndash;compatible</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="price-sec" class="reveal">
       <div class="section-label">Pricing</div>
-      <h2 class="sec-title">Choose your vessel.</h2>
+      <h2 class="sec-title">Usage matches the work. The math has to work too.</h2>
+      <p class="price-deck">Your bill is a <strong>subscription</strong> sized for a typical user on that tier. Under the hood we meter <strong>model usage</strong> (context + output) and <strong>tool calls</strong> (Calendar, Jira, Notion, in-channel webhooks) because that is where our variable cost really lives&mdash;not server sticker price. <strong>Or</strong> connect <strong>your own</strong> model API key (BYOK) and pay the provider under your org&rsquo;s account while Trov runs the product layer. Tiers and caps (when you use our keys) stay honest as provider rates move.</p>
       <div class="price-grid">
         <div class="price-card">
-          <div class="price-tier">Explorer</div>
-          <div class="price-amount">$0</div>
-          <div class="price-period">forever free</div>
+          <div class="price-card-head">
+            <div class="price-tier">Explorer</div>
+            <div class="price-amount" aria-label="0 dollars">$0</div>
+            <p class="price-period">forever free</p>
+          </div>
           <ul class="price-features">
-            <li><span class="check"></span>AI roadmap builder <span class="feat-limit">5 goals/week</span></li>
-            <li><span class="check"></span>Weekly task planner <span class="feat-limit">resets weekly</span></li>
-            <li><span class="check"></span>Basic milestone tracking</li>
-            <li><span class="check"></span>Notion workspace template</li>
-            <li><span class="check"></span>Monthly AI check-in</li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text"><strong>Web app only</strong> &mdash; in-channel Trov needs paid API + webhooks, so the free path stays in-app.</p>
+                <span class="feat-tag">In-app</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">AI arc roadmap and plan runs with Trov</p>
+                <span class="feat-tag">5 &times; / week</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Back-and-forth with Trov in the app</p>
+                <span class="feat-tag">~30 / month</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Deadline and milestone view across your long arc</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Notion <strong>starter template</strong> &mdash; you connect your own workspace</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Light &ldquo;on pace&rdquo; check-in, in-app</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Optional: add <strong>your</strong> LLM API key so model calls bill to you, not Trov&rsquo;s shared pool</p>
+                <span class="feat-tag">BYOK</span>
+              </div>
+            </li>
           </ul>
         </div>
         <div class="price-card featured">
-          <div class="price-badge">Most Popular</div>
-          <div class="price-tier">Navigator</div>
-          <div class="price-amount">$12</div>
-          <div class="price-period">per month</div>
+          <div class="price-badge">Most popular</div>
+          <div class="price-card-head">
+            <div class="price-tier">Navigator</div>
+            <div class="price-amount" aria-label="12 dollars per month">$12</div>
+            <p class="price-period">per month</p>
+          </div>
           <ul class="price-features">
-            <li><span class="check"></span>Everything in Explorer <span class="feat-limit">unlimited</span></li>
-            <li><span class="check"></span>Full weekly task breakdown</li>
-            <li><span class="check"></span>Google Calendar sync</li>
-            <li><span class="check"></span>Editable Notion workspace</li>
-            <li><span class="check"></span>Weekly AI navigation check-ins</li>
-            <li><span class="check"></span>Goal recalibration anytime</li>
-            <li><span class="check"></span>Progress & streak tracking</li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Everything in Explorer, plus a <strong>full</strong> weekly plan, reschedules, and recalibration when scope shifts</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Included AI back-and-forth (planning, Q&amp;A, nudges)</p>
+                <span class="feat-tag">~350 turns / month</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Google Calendar + <strong>two</strong> MCP connections (Jira, Notion, and similar)</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Trov in <strong>one</strong> channel your people already use</p>
+                <span class="feat-tag">Discord, Slack, or WhatsApp</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Deeper Notion, weekly &ldquo;are we on pace?&rdquo; reviews, fair-use callouts before you hit a wall</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">BYOK: same as Explorer, with room for a <strong>production</strong> key, rotation, and team-friendly usage when we ship the controls</p>
+                <span class="feat-tag">Your key</span>
+              </div>
+            </li>
           </ul>
         </div>
         <div class="price-card">
-          <div class="price-tier">Odysseus</div>
-          <div class="price-amount">$29</div>
-          <div class="price-period">per month</div>
+          <div class="price-card-head">
+            <div class="price-tier">Trov</div>
+            <div class="price-amount" aria-label="29 dollars per month">$29</div>
+            <p class="price-period">per month</p>
+          </div>
           <ul class="price-features">
-            <li><span class="check"></span>Everything in Navigator</li>
-            <li><span class="check"></span>Live job market & salary data</li>
-            <li><span class="check"></span>Industry & company research reports</li>
-            <li><span class="check"></span>Company-specific interview prep</li>
-            <li><span class="check"></span>Resume & LinkedIn AI review</li>
-            <li><span class="check"></span>1-on-1 monthly strategy call</li>
-            <li><span class="check"></span>Mentor network access</li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Everything in Navigator with a <strong>larger</strong> usage envelope for long work</p>
+                <span class="feat-tag">~1,000 turns / month</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Up to <strong>five</strong> MCP sources, multiple in-channel surfaces, and <strong>BYOK</strong> with higher limits (multiple keys, environments) as we roll out team controls</p>
+                <span class="feat-tag">Team BYOK</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Long-form help: applications, secondaries, narrative, research-heavy intel</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Interview prep, r&eacute;sum&eacute; and portfolio &mdash; higher context when you need it</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Priority when providers throttle; we keep your arc from stalling in a queue</p>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text"><strong>Quarterly</strong> group office hours on roadmap and strategy (not 1:1 for every seat)</p>
+                <span class="feat-tag">Group format</span>
+              </div>
+            </li>
+            <li class="price-feat">
+              <span class="check" aria-hidden="true"></span>
+              <div class="price-feat-body">
+                <p class="price-feat-text">Early access to mentor and PM <strong>beta</strong> when we open pilots</p>
+                <span class="feat-tag">Waitlist</span>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
-      <p class="price-note">Pricing is indicative — join the waitlist and you'll be the first to know when we launch.</p>
+      <p class="price-note">Launch numbers will track real costs and model quotes&mdash;they may shift <strong>before</strong> we charge the first card. Join the waitlist to lock in early-bird terms when the grid goes live.</p>
     </section>
 
 
     <section class="quote-section reveal">
       <div class="quote-mark">"</div>
-      <p class="quote-text">Odysseus took 10 years and still made it home. The sea is wide, the monsters are real — but Ithaca is always waiting.</p>
-      <div class="quote-attr">The Odysseus Promise</div>
+      <p class="quote-text">The straight line to the license, the offer, the program, or the launch doesn't exist. Productivity culture wasn't built for that. Trov is — one arc, real gates, no fake finish lines.</p>
+      <div class="quote-attr">The Trov Promise</div>
     </section>
 
     <section class="final-cta reveal">
-      <h2 class="final-title">Your Odyssey<br>begins <em>now.</em></h2>
-      <p class="final-sub">Stop drifting. Start rowing.<br>Your Ithaca is closer than you think.</p>
+      <h2 class="final-title">Your journey<br>begins <em>now.</em></h2>
+      <p class="final-sub">Stop running someone else's idea of a productive day.<br>Get a system that only cares whether you're on pace for the life you picked.</p>
       <a href="https://forms.gle/SqBXgmS1zUqwXqD68" target="_blank" class="final-btn">Join the Waitlist</a>
     </section>
 
     <section id="contact-sec" class="reveal contact-section">
       <div class="section-label">Contact</div>
       <div class="contact-row">
-        <a href="mailto:hello.from.odysseus.ai@gmail.com" class="contact-item">
+        <a href="mailto:hello.from.trov@gmail.com" class="contact-item">
           <span class="contact-item-label">Email</span>
-          <span class="contact-item-value">hello.from.odysseus.ai@gmail.com</span>
+          <span class="contact-item-value">hello.from.trov@gmail.com</span>
         </a>
         <div class="contact-divider"></div>
         <div class="contact-item">
@@ -288,15 +759,18 @@
 
     <footer>
       <div class="footer-left">
-        <div class="footer-logo">ODYSSEUS<span>.</span>AI</div>
-        <div class="footer-copy">Built for the ambitious. For the lost. For the ones who will arrive.</div>
+        <div class="footer-logo">
+          <img src="trov-mascot.png" alt="" class="footer-mascot" width="28" height="28" loading="lazy" decoding="async" />
+          <span class="footer-word">Trov</span>
+        </div>
+        <div class="footer-copy">A copilot for the long game. Built for the long season &mdash; the retake, the job search, the first gen with no backchannel, the build that has to ship.</div>
       </div>
       <div class="footer-contact">
         <div class="footer-contact-item">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M2 4l6 5 6-5M2 4h12v9H2V4z"/>
           </svg>
-          <a href="mailto:hello.from.odysseus.ai@gmail.com">hello.from.odysseus.ai@gmail.com</a>
+          <a href="mailto:hello.from.trov@gmail.com">hello.from.trov@gmail.com</a>
         </div>
         <div class="footer-contact-item">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
